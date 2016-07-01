@@ -20,7 +20,7 @@ import global.Constants;
 
 
 public class MemberBean {
-	 String id,pw,name,regDate,gender,ssn; 
+	 String id,pw,name,regDate,gender,ssn,now; 
 	 int age;
 
 	 public MemberBean() {}
@@ -30,7 +30,7 @@ public class MemberBean {
 		this.pw = pw;
 		this.name = name;
 		this.ssn = ssn;
-		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		
 		this.regDate = now;
 		String[] ssnArr = ssn.split("-");
 		String[] nowArr = now.split("-");
@@ -66,8 +66,9 @@ public class MemberBean {
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public String setId(String id) {
 		this.id = id;
+		return id;
 	}
 	public String getPw() {
 		return pw;
@@ -82,7 +83,8 @@ public class MemberBean {
 		this.name = name;
 	}
 	public String getRegDate() {
-		return regDate;
+		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		return now;
 	}
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;

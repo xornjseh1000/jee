@@ -13,30 +13,58 @@ package member;
 public class MemberServiceImpl implements MemberService{
 	//	1,등록 2.보기 3수정 4삭제 0.종료	
 	MemberBean student;
-	@Override
+	MemberDAO dao = MemberDAO.getInstance();
+	private static MemberServiceImpl instance = new MemberServiceImpl();
+	public MemberServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	public static MemberServiceImpl getInstance() {
+		return instance;
+	}
 	
-	public void registStudent(String id, String pw, String name, String ssn) {
-		student = new MemberBean(id,pw,name,ssn);
+	@Override
+	public String regist(MemberBean mem) {
+		String msg = "";
+		
+		String sql = "insert into member(id,pw,name,ssn,regDate) "+
+					"values('"+mem.getId()+"','"+mem.getPw()+"','"+mem.getName()+"','"+mem.getSsn()+"','"+mem.getRegDate()+"')";
+	
+		int result = dao.exeUpdate(sql);
+		if (result==1) {
+			msg = "회원가입 축하";
+		} else {
+			msg = "회원가입 실패";
+		}
+		
 		// 1등록
+		return msg;
 	}
 
 	@Override
-	public String showStudent() {
+	public String show() {
 		// 2보기
 		return student.toString();
 	}
 
 	@Override
-	public void updateStudent(String pw) {
+	public void update(String pw) {
 		//수정
 		student.setPw(pw);
 	}
 
 	@Override
-	public void deleteStudent() {
+	public void delete() {
 		//삭제
 		student = null;
 	}
 	
 
 }
+/*
+ * create table account("
+			+ "account_no int primary key,"
+			+ "name varchar(20),"
+			+ "money int,"
+			+ "pw varchar(20),"
+			+ "id varchar(20)
+ */

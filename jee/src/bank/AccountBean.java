@@ -20,7 +20,6 @@ public class AccountBean {
 	private int accountNo; // 인스턴스 변수는 초기화를 하지 않는다.
 	private String name;
 	private int money;
-
 	private String pw;
 	private String id;
 	public final static String BANK_NAME = "한빛은행";

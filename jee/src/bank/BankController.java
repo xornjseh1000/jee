@@ -21,7 +21,8 @@ public class BankController {
 		BankService bankservice = new BankServiceImpl();
 		String spec = "";
 		String[] specArr = new String[3];
-		AccountBean tempAcc = null;
+		AccountBean tempAcc = new AccountBean();
+		
 		while (true) {
 			
 			switch (JOptionPane.showInputDialog("1통장계설,2입금 ,3조회, 4출금, 5통장내역,11계설,12조회,13계좌조회,14이름조회,15계좌수,16계좌비번수정, 0종료")) {
