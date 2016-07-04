@@ -3,6 +3,10 @@
  */
 package grade;
 
+import java.util.List;
+
+import member.MemberDAO;
+
 /**
  * @date   :2016. 6. 21.
  * @author :김동혁
@@ -10,41 +14,56 @@ package grade;
  * @story  :
  */
 public  class GradeServiceImpl implements GradeService {
-	@Override
-	public int total(int kor, int eng, int math) {
-		int total = kor + eng + math;
-		return total;
+	GradeDAO dao = GradeDAO.getInstance();
+	private GradeServiceImpl() {
+		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public int avg(int total) {
-		int avg = total / 3;
-		return avg;
+	private static GradeServiceImpl instance = new GradeServiceImpl();
+	
+	public static GradeServiceImpl getInstance() {
+		return instance;
 	}
+
 	@Override
-	public String grade(int avg) {
-		String grade = "";
-		switch (avg/10) {
-		case 9:
-			 grade = "A";
-			break;
-		case 8:
-			grade = "B";
-			break;
-		case 7:
-			grade = "C";
-			break;
-		case 6:
-			grade = "D";
-			break;
-		case 5:
-			grade = "E";
-			break;
-			
-			
-		default:
-			grade = "F";
-			break;
-		}
-		return grade;
+	public int insert(GradeBean grade) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+	@Override
+	public int update(GradeBean grade) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(GradeBean grade) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<GradeBean> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GradeBean> findByHakjum() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GradeBean findBySeq(int seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }

@@ -3,6 +3,8 @@
  */
 package member;
 
+import java.util.List;
+
 
 /**
  * @date   :2016. 6. 20.
@@ -14,6 +16,7 @@ public class MemberServiceImpl implements MemberService{
 	//	1,등록 2.보기 3수정 4삭제 0.종료	
 	MemberBean student;
 	MemberDAO dao = MemberDAO.getInstance();
+	String msg = "";
 	private static MemberServiceImpl instance = new MemberServiceImpl();
 	public MemberServiceImpl() {
 		// TODO Auto-generated constructor stub
@@ -24,12 +27,11 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public String regist(MemberBean mem) {
-		String msg = "";
 		
-		String sql = "insert into member(id,pw,name,ssn,regDate) "+
-					"values('"+mem.getId()+"','"+mem.getPw()+"','"+mem.getName()+"','"+mem.getSsn()+"','"+mem.getRegDate()+"')";
+		
+		
 	
-		int result = dao.exeUpdate(sql);
+		int result = dao.insert(mem);
 		if (result==1) {
 			msg = "회원가입 축하";
 		} else {
@@ -47,15 +49,53 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void update(String pw) {
+	public String update(MemberBean mem) {
 		//수정
-		student.setPw(pw);
+		
+		
+		
+		
+		int result = dao.update(mem);
+		if (result==1) {
+			msg = "변경완료";
+		} else {
+			msg = "변경실패";
+		}
+		return msg;
 	}
 
 	@Override
-	public void delete() {
+	public String delete(String id) {
 		//삭제
-		student = null;
+		
+		if (dao.delete(id)==1) {
+			msg = "삭제완료";
+		} else {
+			msg = "삭제실패";
+		}
+		return msg;
+	}
+	@Override
+	public int count() {
+
+		return dao.count();
+	}
+	public MemberBean findById(String findID) {
+		MemberBean temp = dao.findById(findID);
+		MemberBean mem = new MemberBean();
+		return null;
+	}
+	@Override
+	public List<MemberBean> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<MemberBean> findByName(String findName) {
+		// TODO Auto-generated method stub
+		MemberBean temp = dao.findByName(findName);
+		MemberBean mem = new MemberBean();
+		return null;
 	}
 	
 

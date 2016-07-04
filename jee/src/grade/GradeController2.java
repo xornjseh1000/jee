@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @file   :Avg.java
  * @story  :
  */
-public class GradeController {
+public class GradeController2 {
 	/*
 	 * 클라이언트에서 프로그램 개발 요청이 왔습니다.
 	 * 이름과 국,영,수 세과목점수를 입력받아서()
@@ -30,28 +30,29 @@ public class GradeController {
 	 * [단] switch-case 문으로 해결하세요.
 	 **/
 	public static void main(String[] args) {
-		GradeServiceImpl service = GradeServiceImpl.getInstance();
-		
+	/*	String name = "",grade = "";
+		int kor = 0, eng = 0, math = 0,avg=0,total=0;
+		GradeService service = new GradeServiceImpl();
 		while (true) {
-			switch (JOptionPane.showInputDialog(""
-					+ "1추가 2수정 3삭제 4전체조회 5학점조회 6시퀀스조회 7응시생수"
-					+ "")) {
+			switch (JOptionPane.showInputDialog("go(1)?")) {
 			case "1":
-				
+				String spec = JOptionPane.showInputDialog("이름,국어,영어,수학");
+				String[] arr = spec.split(",");
+				name = arr[0];
+				kor = Integer.parseInt(arr[1]);
+				eng = Integer.parseInt(arr[2]);
+				math = Integer.parseInt(arr[3]);
+				//grade = service.grade(service.avg(service.total(kor,eng,math)));
+				JOptionPane.showMessageDialog(null, "이름 :"+ name + "성적:"+grade);
 				break;
-			case "2": break;
-			case "3": break;
-			case "4": break;
-			case "5": break;
-			case "6": break;
-			case "7": break;
-			case "0": break;
+
 			default:
 				return;
 			}
 		}
 	
 	
-	}
+	}*/
+}
 }
 	

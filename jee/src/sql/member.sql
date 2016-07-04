@@ -1,4 +1,4 @@
-insert into account values('101031232','박보영','32000','7055658','parklove');
+insert into member values('101031232','박보영','32000','7055658','parklove');
 
 drop table member;
 
@@ -11,15 +11,19 @@ create table member(
 	regDate varchar2(20)
 );
 
--- READ
-select * from member
-where id = 'choilove';
+-- READ()
+select * from member; --list
+select * from member where id = 'lee'; -- findByPK
+select * from member where gender = '남'; -- findByNotPK
+select count(*) from member ; -- count
+
 -- UPDATE
 update account set pw = '999'
 where id = 'xornjseh';
 -- DELETE
 delete from account
-where id = 'xornjseh'
+where id = 'xornjseh';
+delete member;
 
 
 			

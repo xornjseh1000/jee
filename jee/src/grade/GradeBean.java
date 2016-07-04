@@ -11,43 +11,45 @@ package grade;
  * @story  :
  */
 public class GradeBean {
-	private int kor,eng,math;
-	private String name;
+	private int kor,eng,math,seq;
+	private String name,hakjum;
 	
-	
-	public GradeBean(String name, int kor, int eng, int math) {
-		this.name = name;
-		this.kor = kor;
-		this.eng = eng;
-		this.math = math;
-		
-	}
-	
-	
-	
-	public String getname(){
-		return name;
-	}
-	public int getkor(){
+	public int getKor() {
 		return kor;
 	}
-	public int geteng(){
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public int getEng() {
 		return eng;
 	}
-	public int getmath(){
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public int getMath() {
 		return math;
 	}
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "GradeBean [kor=" + kor + ", eng=" + eng + ", math=" + math + ", name=" + name + "]";
+	public void setMath(int math) {
+		this.math = math;
 	}
-
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
