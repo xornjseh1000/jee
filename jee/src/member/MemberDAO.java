@@ -11,7 +11,7 @@ import java.util.List;
 import global.Constants;
 
 public class MemberDAO {
-	Connection con = null;
+	Connection con;
 	ResultSet rs = null; // executeQuery() 에서만 리턴받는 객체
 	Statement stmt = null;
 	PreparedStatement pstmt = null;
@@ -39,13 +39,12 @@ public class MemberDAO {
 	}
 
 	public int exeUpdate(String sql) {
-
 		String sqlCreate = "";
 		int result = 0;
 
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
 			result = stmt.executeUpdate(sql);
 		} catch (Exception e) {
@@ -64,8 +63,8 @@ public class MemberDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			con = DriverManager.getConnection(
 					Constants.ORACLE_URL,
-					Constants.ORACLE_ID,
-					Constants.ORACLE_PW);
+					Constants.USER_ID,
+					Constants.USER_PW);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()){
@@ -84,8 +83,8 @@ public class MemberDAO {
 			MemberBean temp = null;
 			con = DriverManager.getConnection(
 					Constants.ORACLE_URL,
-					Constants.ORACLE_ID,
-					Constants.ORACLE_PW
+					Constants.USER_ID,
+					Constants.USER_PW
 					);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -113,8 +112,8 @@ public class MemberDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			con = DriverManager.getConnection(
 					Constants.ORACLE_URL,
-					Constants.ORACLE_ID,
-					Constants.ORACLE_PW
+					Constants.USER_ID,
+					Constants.USER_PW
 					);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -136,8 +135,8 @@ public class MemberDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			con = DriverManager.getConnection(
 					Constants.ORACLE_URL,
-					Constants.ORACLE_ID,
-					Constants.ORACLE_PW
+					Constants.USER_ID,
+					Constants.USER_PW
 					);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
