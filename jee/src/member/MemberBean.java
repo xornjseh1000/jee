@@ -3,34 +3,41 @@
  */
 package member;
 
-/**
- * @date   :2016. 6. 16.
- * @author :김동혁
- * @file   :Student.java
- * @story  : 
- * int age      String ssn , id, pw ,gender,name,regDate,
- * 1. 등록 : ssn , 아이디 , 비번 , 이름
- * 2. 조회 : 홍길동, 아이디 , 남
- */
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import global.Constants;
-
-
+/**
+ * @date   :2016. 6. 16. 
+ * @author :pakjkwan@gmail.com
+ * @file   :Student.java
+ * @story  :
+*/
 public class MemberBean {
-	 String id,pw,name,regDate,gender,ssn,now; 
-	 int age;
+	private String id,pw,name,regDate,gender,ssn,profileImg,email; 
+	
+	
+	public String getEmail() {
+		return email;
+	}
 
-	 public MemberBean() {}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	private int birth;
+	
+	public MemberBean() {}
+	
+	
 	
 	public MemberBean(String id,String pw,String name,String ssn) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.ssn = ssn;
-		
+		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 		this.regDate = now;
 		String[] ssnArr = ssn.split("-");
 		String[] nowArr = now.split("-");
@@ -42,33 +49,41 @@ public class MemberBean {
 		case 1: case 5: 
 			this.gender="남"; 
 			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
-			this.age = ageResult0;
+			this.birth = ageResult0;
 			break;
 		case 3: case 7:
 			this.gender="남"; 
 			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
-			this.age = ageResult0;
+			this.birth = ageResult0;
 			break;
 		case 2: case 6:
 			this.gender="여";
 			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
-			this.age = ageResult0;
+			this.birth = ageResult0;
 			break;
 		case 4: case 8:
 			this.gender="여";
 			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
-			this.age = ageResult0;
+			this.birth = ageResult0;
 			break;
 		default:
 			System.out.println("잘못된값이 입력됨");
 		}
 	}
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+
 	public String getId() {
 		return id;
 	}
-	public String setId(String id) {
+	public void setId(String id) {
 		this.id = id;
-		return id;
 	}
 	public String getPw() {
 		return pw;
@@ -86,17 +101,49 @@ public class MemberBean {
 		return this.regDate;
 	}
 	public void setRegDate() {
-		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
-		this.regDate = now;
+		
+		this.regDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 	}
-	public void setRegDate(String regDate){
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 	public String getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+	public void setGenderAndBirth(String ssn) {
+		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		String[] ssnArr = ssn.split("-");
+		String[] nowArr = now.split("-");
+		int ageResult1 = (Integer.parseInt(ssnArr[0]));
+		int genderResult = (Integer.parseInt(ssnArr[1]));
+		int ageResult2 = (Integer.parseInt(nowArr[0]));
+		
+		int ageResult0 = 0;
+		switch (genderResult%2) {
+		case 1: case 5: 
+			this.gender="남"; 
+			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		case 3: case 7:
+			this.gender="남"; 
+			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		case 2: case 6:
+			this.gender="여";
+			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		case 4: case 8:
+			this.gender="여";
+			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		default:
+			System.out.println("잘못된값이 입력됨");
 		this.gender = gender;
+		}
 	}
 	public String getSsn() {
 		return ssn;
@@ -104,18 +151,18 @@ public class MemberBean {
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	@Override
-	public String toString() {
-		return Constants.SCHOOL_NAME+"학생 [아이디=" + id + ", 비번=****"  + ", 이름=" + name + ", 등록일=" + regDate + ", 성별=" + gender
-				+ ", 주민번호=" + ssn + ", 나이=" + age + "]";
+	
+	public int getBirth() {
+		return birth;
 	}
 
+	
+	
+	@Override
+	public String toString() {
+		return "학생 [아이디=" + id + ", 비번=****" + ", 이메일=" + email + ", 이름=" + name + ", 등록일=" + regDate + ", 성별=" + gender
+				+ ", 주민번호=" + ssn + ", 나이=" + birth + "]";
+	}
 	
 
 }

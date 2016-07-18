@@ -36,7 +36,7 @@ public class GradeController {
 		GradeBean st = new GradeBean();
 		while (true) {
 			switch (JOptionPane.showInputDialog(""
-					+ "1추가 2수정 3삭제 4전체조회 5학점조회 6시퀀스조회 7응시생수"
+					+ "1추가 2수정 3삭제 4전체조회 5학점을 포함한 시험내역 조회(SEQ) 6시퀀스조회 7응시생수 0종료"
 					+ "")) {
 			case "1":
 				String plus = JOptionPane.showInputDialog("java성적,sql성적,html성적,javascript성정,ID,시험날짜");
@@ -60,13 +60,27 @@ public class GradeController {
 				break;
 			case "3": 
 				String del = JOptionPane.showInputDialog("시퀀스");
-				service.delete(del);
+				JOptionPane.showMessageDialog(null, service.delete(del));
 				break;
-			case "4": break;
-			case "5": break;
-			case "6": break;
-			case "7": break;
-			case "0": break;
+			case "4": 
+				GradeUI ui = new GradeUI();
+				break;
+			case "5":
+				String seq = JOptionPane.showInputDialog("조회하려는 SEQ");
+				GradeBean gBean = service.findBySeq(seq);
+				JOptionPane.showMessageDialog(null, gBean);
+				break;
+			case "6": 
+				String id = JOptionPane.showInputDialog("조회하려는 아이디");
+				JOptionPane.showMessageDialog(null, service.findById(id));
+				break;
+			case "7":
+				String examDate = JOptionPane.showInputDialog("조회하려는 시험일자(예:2016-05)");
+				
+				JOptionPane.showMessageDialog(null, service.count(examDate)+"명");
+				break;
+			case "0": 
+				return;
 			default:
 				return;
 			}

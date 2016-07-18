@@ -85,7 +85,7 @@ public class GradeBean {
 	@Override
 	public String toString() {
 		return "성적표 [No.=" + seq + ",ID:" + id + ", 학점:" + grade + ",  java:" + java + ", sql:" + sql + ", html5:"
-				+ html + ", javascript:" + javascript + "]";
+				+ html + ", javascript:" + javascript + "]\n";
 	}
 
 }

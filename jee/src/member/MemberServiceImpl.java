@@ -1,110 +1,127 @@
-/**
- * 
- */
 package member;
 
 import java.util.List;
+import java.util.Map;
 
+import bank.AccountService;
+import bank.AccountServiceImpl;
 
-/**
- * @date   :2016. 6. 20.
- * @author :김동혁
- * @file   :StudentServiceImpl.java
- * @story  :
- */
 public class MemberServiceImpl implements MemberService{
-	//	1,등록 2.보기 3수정 4삭제 0.종료	
-	MemberBean student;
+	
 	MemberDAO dao = MemberDAO.getInstance();
-	String msg = "";
+	AccountService accService = AccountServiceImpl.getInstance();
+	MemberBean session;
 	private static MemberServiceImpl instance = new MemberServiceImpl();
-	public MemberServiceImpl() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	public static MemberServiceImpl getInstance() {
 		return instance;
+	}
+
+	
+	private MemberServiceImpl() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public String regist(MemberBean mem) {
+		String msg = "";
 		
-		
-		
-	
 		int result = dao.insert(mem);
 		if (result==1) {
-			msg = "회원가입 축하";
+			msg = "회원가입 축하합니다";
 		} else {
 			msg = "회원가입 실패";
 		}
-		
-		// 1등록
 		return msg;
 	}
 
-	@Override
-	public String show() {
-		// 2보기
-		return student.toString();
-	}
 
 	@Override
-	public String update(MemberBean mem) {
-		//수정
-		
-		
-		
-		
+	public void update(MemberBean mem) {
+		 
 		int result = dao.update(mem);
-		if (result==1) {
-			msg = "변경완료";
-		} else {
-			msg = "변경실패";
-		}
-		return msg;
+		if (result == 1) {
+			session = this.findById(mem.getId());
+		} 
 	}
 
 	@Override
 	public String delete(String id) {
-		//삭제
-		
-		if (dao.delete(id)==1) {
-			msg = "삭제완료";
+		String result = ""; 
+		if (dao.delete(id) == 1) {
+			result = "삭제성공";
 		} else {
-			msg = "삭제실패";
+			result = "삭제실패";
 		}
-		return msg;
+		return result;
 	}
+
+
 	@Override
 	public int count() {
-
+		// TODO Auto-generated method stub
 		return dao.count();
 	}
-	public MemberBean findById(String findID) {
-		MemberBean temp = dao.findById(findID);
-		MemberBean mem = new MemberBean();
-		return null;
-	}
-	@Override
-	public List<MemberBean> list() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<MemberBean> findByName(String findName) {
-		// TODO Auto-generated method stub
-		MemberBean temp = dao.findByName(findName);
-		MemberBean mem = new MemberBean();
-		return null;
-	}
-	
 
+
+	@Override
+	public MemberBean findById(String findID) {
+		return dao.findById(findID);
+	}
+
+
+	@Override
+	public List<?> list() {
+		
+		return dao.list();
+	}
+
+
+	@Override
+	public List<?> findBy(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Map<?, ?> map() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String login(MemberBean member) {
+	
+		// 2.로그인
+		String result = "";
+			if (dao.login(member)) {
+				session = dao.findById(member.getId());
+				result = session.getName();
+				System.out.println("서비스에서 이름 디버깅"+result);
+				accService.map();
+			}else{
+				result = "";
+			}
+		
+		return result;
+	}
+
+
+	@Override
+	public MemberBean show() {
+		
+		return session;
+	}
+
+
+	@Override
+	public void logout(MemberBean member) {
+		if (member.getId().equals(session.getId())&& member.getPw().equals(session.getPw())) {
+			session = null;
+		} 
+
+		
+		
+		
+	}
 }
-/*
- * create table account("
-			+ "account_no int primary key,"
-			+ "name varchar(20),"
-			+ "money int,"
-			+ "pw varchar(20),"
-			+ "id varchar(20)
- */

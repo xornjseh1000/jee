@@ -5,22 +5,16 @@ package member;
 
 import java.util.List;
 
-/**
- * @date   :2016. 6. 17.
- * @author :김동혁
- * @file   :StudentService.java
- * @story  :
- */
-public interface MemberService {
-		//1,등록 2.보기 3수정 4삭제 0.종료
-			
-			
-			public String regist(MemberBean mem);
-			public String show();
-			public String update(MemberBean mem);
-			public String delete(String id);
-			public int count();
-			public MemberBean findById(String findID);
-			public List<MemberBean> findByName(String findName);
-			public List<MemberBean> list();
+import global.CommonService;
+
+
+public interface MemberService extends CommonService{
+	public String regist(MemberBean mem);
+	public MemberBean findById(String findID);
+	public void update(MemberBean stu2);
+	public String delete(String string);
+	public String login(MemberBean member);
+	public void logout(MemberBean member);
+	public MemberBean show();
+	
 }

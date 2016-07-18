@@ -4,8 +4,7 @@
 package grade;
 
 import java.util.List;
-
-import member.MemberDAO;
+import java.util.Map;
 
 /**
  * @date :2016. 6. 21.
@@ -92,18 +91,38 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public List<GradeBean> list() {
-		// TODO Auto-generated method stub
-		return null;
+		List<GradeBean> list = dao.list();
+		return list;
 	}
 
 	@Override
 	public List<GradeBean> findByGrade() {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
+
+
 	@Override
-	public GradeBean findBySeq(int seq) {
+	public int count(String examDate) {
+		// TODO Auto-generated method stub
+		return dao.count(examDate);
+	}
+
+	public GradeBean findBySeq(String seq) {
+		// TODO Auto-generated method stub
+		return dao.findBySeq(seq);
+	}
+
+	@Override
+	public List<GradeBean> findById(String id) {
+
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<?> findBy(String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -113,5 +132,12 @@ public class GradeServiceImpl implements GradeService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Map<?, ?> map() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

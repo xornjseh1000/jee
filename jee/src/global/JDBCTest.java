@@ -13,25 +13,20 @@ public class JDBCTest {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from test", result = "";
+		String sql = "select * from member", result = "";
 		List<String> list = new ArrayList<String>();
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID,
-					Constants.USER_PW);
+			con = DatabaseFactory.createDatabase(Vendor.ORACLE, Constants.USER_ID, Constants.USER_PW).getConnection();
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				result = rs.getString("id");
 				list.add(result);
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 
 		System.out.println(list);
 
