@@ -3,13 +3,17 @@
  */
 package grade;
 
+import java.io.Serializable;
+
 /**
  * @date :2016. 6. 21.
  * @author :김동혁
  * @file :GradeBean.java
  * @story :
  */
-public class GradeBean {
+public class GradeBean implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String id, grade, seq,examDate;
 	private int java, sql, html, javascript;
 

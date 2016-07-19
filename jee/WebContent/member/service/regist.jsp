@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%String ctx = application.getContextPath();%>
+
 <style type="text/css">
 span.meta {
 	width: 200px;

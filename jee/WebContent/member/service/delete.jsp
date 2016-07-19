@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String ctx = application.getContextPath();
-%>
+
 <%@ page import="member.MemberBean" %>     
 <%@ page import="member.MemberService" %>     
 <%@ page import="member.MemberServiceImpl" %>   
